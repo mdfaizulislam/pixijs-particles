@@ -27,5 +27,9 @@ export class GameConfig {
 
   public static ASSETS = {
     emoji: "./sprites/emoji6.png",
+    emoji1: "./sprites/emoji1.png",
+    emoji2: "./sprites/emoji2.png",
+    emoji3: "./sprites/emoji3.png",
+    emoji4: "./sprites/emoji4.png",
   };
 }

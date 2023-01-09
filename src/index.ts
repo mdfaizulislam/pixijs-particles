@@ -24,5 +24,4 @@ AppController.initialize(screenWidth, screenHeight, 0x6495ed);
 // pass in the screen size to avoid "asking up"
 // const scene = new LobbyScene();
 const scene = new GameSceneParticles();
-console.log("Scene: ", scene);
 AppController.changeScene(scene);
