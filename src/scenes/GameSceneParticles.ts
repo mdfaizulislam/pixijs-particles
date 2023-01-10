@@ -34,6 +34,7 @@ export class GameSceneParticles extends Container implements IScene {
     this.mContainer = new Container();
     this.mContainer.sortableChildren = true;
     this.addChild(this.mContainer);
+    this.mContainer.zIndex = 2;
     this.mEmitterContainer = new Container();
     this.addChild(this.mEmitterContainer);
     this.init();
@@ -44,6 +45,7 @@ export class GameSceneParticles extends Container implements IScene {
   private init() {
     this.addGameTitle();
     this.showFPS();
+    this.addMessage();
 
     document.addEventListener(
       "visibilitychange",
@@ -66,6 +68,18 @@ export class GameSceneParticles extends Container implements IScene {
     this.mlabelTitle.y = this.mlabelTitle.height / 2;
     this.mContainer.addChild(this.mlabelTitle);
     this.mlabelTitle.zIndex = 100;
+  }
+
+  private addMessage(): void {
+    let textMessage = Helper.getLabelWithFontSize(
+      "Touch or click any where",
+      20
+    );
+    textMessage.anchor.set(0.5, 0.5);
+    textMessage.x = AppController.width / 2;
+    textMessage.y = textMessage.height + 50;
+    this.mContainer.addChild(textMessage);
+    textMessage.zIndex = 1;
   }
 
   addParticleEmitter() {
