@@ -1,4 +1,4 @@
-# pixijs-particles
+# AWESOME PixiPS-Particle using PixiJS, Typescript, Webpack and NPM
 
 Pixi JS Particles
 
