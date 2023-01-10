@@ -2,21 +2,20 @@ import { Texture } from "pixi.js";
 import { GameConfig } from "./GameConfigs";
 
 export class EmitterConfig {
-  public static CONFIG = {
+  public static AWESOME_PARTICLE_EMITTER = {
     lifetime: {
-      min: 0.5,
-      max: 0.5,
+      min: 0.8,
+      max: 0.8,
     },
-    frequency: 0.008,
-    spawnChance: 1,
-    particlesPerWave: 1,
-    emitterLifetime: 5.0,
-    maxParticles: 10,
+    particlesPerWave: 8,
+    frequency: 0.2,
+    emitterLifetime: 0.41,
+    maxParticles: 200,
+    addAtBack: false,
     pos: {
       x: 0,
       y: 0,
     },
-    addAtBack: false,
     behaviors: [
       {
         type: "alpha",
@@ -24,15 +23,41 @@ export class EmitterConfig {
           alpha: {
             list: [
               {
-                value: 0.8,
                 time: 0,
+                value: 0.8,
               },
               {
-                value: 0.1,
                 time: 1,
+                value: 0.7,
               },
             ],
           },
+        },
+      },
+      {
+        type: "movePath",
+        config: {
+          path: "cos(x/20)*20",
+          speed: {
+            list: [
+              {
+                time: 0,
+                value: 150,
+              },
+              {
+                time: 1,
+                value: 100,
+              },
+            ],
+          },
+          minMult: 1,
+        },
+      },
+      {
+        type: "moveSpeedStatic",
+        config: {
+          min: 200,
+          max: 200,
         },
       },
       {
@@ -41,15 +66,16 @@ export class EmitterConfig {
           scale: {
             list: [
               {
-                value: 1,
                 time: 0,
+                value: 1,
               },
               {
-                value: 0.3,
                 time: 1,
+                value: 0.3,
               },
             ],
           },
+          minMult: 1,
         },
       },
       {
@@ -58,57 +84,29 @@ export class EmitterConfig {
           color: {
             list: [
               {
-                value: "fb1010",
                 time: 0,
+                value: "e3f9ff",
               },
               {
-                value: "f5b830",
                 time: 1,
+                value: "0ec8f8",
               },
             ],
           },
         },
       },
       {
-        type: "moveSpeed",
+        type: "textureRandom",
         config: {
-          speed: {
-            list: [
-              {
-                value: 200,
-                time: 0,
-              },
-              {
-                value: 100,
-                time: 1,
-              },
-            ],
-            isStepped: false,
-          },
+          textures: [Texture.from(GameConfig.ASSETS.emoji)],
         },
       },
       {
-        type: "rotationStatic",
+        type: "spawnBurst",
         config: {
-          min: 0,
-          max: 360,
-        },
-      },
-      {
-        type: "spawnShape",
-        config: {
-          type: "torus",
-          data: {
-            x: 0,
-            y: 0,
-            radius: 10,
-          },
-        },
-      },
-      {
-        type: "textureSingle",
-        config: {
-          texture: Texture.from(GameConfig.ASSETS.emoji),
+          start: 0,
+          spacing: 45,
+          distance: 0,
         },
       },
     ],
